@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="title">Login</h3>
+<div class="box">
+    <form method="POST" action="/login">
+
+        <input class="input is-large" type="text" name="name" placeholder="Name" autofocus="">
+
+        <input class="input is-large" type="password" name="password" placeholder="Password">
+
+        <label for="remember">Remember me</label>
+        <input type="checkbox" id="remember" name="remember">
+
+        <button class="button">Sign Up</button>
+    </form>
+</div>
+{% endblock %}

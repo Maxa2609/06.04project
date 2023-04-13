@@ -1,9 +1,11 @@
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, url_for
+from werkzeug.security import check_password_hash
 from crm_system import app
 from crm_system.models import student
 from crm_system.models.database import session
 from crm_system.models.group import Group
 from crm_system.models.student import Student
+from crm_system.models.user import User
 
 
 @app.route("/")
@@ -41,3 +43,17 @@ def group_list(g_name):
         session.close()
         return redirect(f"/student_management/{g_name}")
     return render_template("student_management.html", group=group)
+
+@app.route("/login", methods=["GET","POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get('name')
+        password = request.form.get('password')
+        remember = True if request.form.get('remember') else False
+
+        user = session.query(User).where(User.username == username).first()
+
+        if not user or not check_password_hash(user.password, password):
+            return redirect(url_for("login"))
+        return redirect(url_for("main"))
+    return render_template("login.html")
