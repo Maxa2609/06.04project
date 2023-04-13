@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Members of group</h2>
+{% for name in s_names %}
+<span>{{ name }}</span>
+{% endfor %}
+
+<h2>Add student to this group</h2>
+<form method="post">
+    <label for="surname">Enter surname of student</label><br>
+    <input type="text" id="surname" name="surname"><br>
+
+    <label for="name">Enter name of student</label><br>
+    <input type="text" id="name" name="name"><br>
+
+    <label for="age">Enter age of student</label><br>
+    <input type="text" id="age" name="age"><br>
+
+    <label for="address">Enter address of student</label><br>
+    <input type="text" id="address" name="address"><br>
+
+    <input type="submit" value="ADD" class="button">
+</form>
+
+{% endblock %}
