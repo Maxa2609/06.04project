@@ -1,7 +1,8 @@
 from crm_system.models.database import Base
 from sqlalchemy import Column, Integer, String
+from flask_login import UserMixin
 
-class User(Base):
+class User(UserMixin,Base):
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
